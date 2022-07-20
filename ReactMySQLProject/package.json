@@ -1,0 +1,22 @@
+{
+  "name": "ReactMySQLProject",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "server": "node app.js",
+    "client": "npm run start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "body-parser": "^1.20.0",
+    "concurrently": "^5.0.0",
+    "express": "^4.17.1",
+    "mysql": "^2.18.1",
+    "webpack-dev-middleware": "^5.3.3"
+  }
+}
