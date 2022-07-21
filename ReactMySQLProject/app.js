@@ -27,6 +27,23 @@ app.get('/api/products', (req, res) => {
   });
 });
 
+app.get('/api/brands', (req, res) => {
+  var sql = "SELECT * FROM category";
+  connection.query(sql, function(err, results) {  
+    if (err) throw err;
+    res.json({brands: results});
+  });
+});
+
+app.get('/api/watchsByCategoryId', (req, res) => {console.log(req.body.categoryId);
+  var sql = "SELECT A.*,B.categoryName FROM product A, category B WHERE A.categoryId = '"+req.body.categoryId+"' AND A.categoryId = B.categoryId  ORDER BY A.productId DESC";
+  connection.query(sql, function(err, results) {  
+    if (err) throw err;
+    console.log(results);
+    res.json({products: results});
+  });
+});
+
 
 app.post('/api/insert', function(req, res) {
   var sql = "INSERT "
@@ -42,6 +59,18 @@ app.post('/api/insert', function(req, res) {
     res.json({products: results});
   });
 });
+
+app.post('/api/insertBrand', function(req, res) {
+  var sql = "INSERT "
+          + "INTO category(categoryName) "
+          + "VALUES('"
+          +   req.body.categoryName+"')";
+  connection.query(sql, function (err, results) {
+    if(err) throw err;
+    res.json({brands: results});
+  });
+});
+
 
 app.post('/api/edit', (req, res) => {
   var sql = "UPDATE product SET "
